@@ -1,7 +1,6 @@
 <?php
-$baseUrl = "http://localhost:8888/rithler_news/";
-// $baseUrl = "http://" . $_SERVER['SERVER_NAME']."/";
 
+$baseUrl = "http://" . $_SERVER['HTTP_HOST'] . "/rithler_news/";
 
 if (isset($_POST["logout"])) {
     session_start();
