@@ -2,14 +2,15 @@
 session_start();
 
 require_once "./src/DB/DB.php";
-require_once "./Models/User.php";
+require_once "./src/Models/User.php";
 
 
 
 
-// if (isset($_SESSION["user"])) {
-//   header("Location: $baseUrl src/articles/articles.php");
-// }
+if (isset($_SESSION["user"])) {
+  header("Location: $baseUrl src/Dashboard/dashboard.php");
+}
+
 $u = new User(loadDB());
 
 if (isset($_POST["register"])) {
@@ -69,14 +70,9 @@ if (isset($_POST["register"])) {
     ];
 
     if ($u->register($user)) {
-      $_SESSION["user"] = [
-        "nom" =>  $lastname,
-        "prenom" =>  $firstname,
-        "email" =>  $email,
-      ];
-      header("Location: $baseUrl src/articles/articles.php");
+      header("Location: $baseUrl login.php");
     } else {
-      $errors['E'] = "l'email existe deja";
+      $errors['E'] = "L'email existe déjà";
     }
   }
 }
@@ -91,7 +87,7 @@ if (isset($_POST["register"])) {
   <meta charset="UTF-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous" />
+  <link rel="stylesheet" href="./assets/bootstrap/dist/css/bootstrap.min.css">
   <title>Accueil</title>
 </head>
 
@@ -126,14 +122,14 @@ if (isset($_POST["register"])) {
                   <div class="row">
                     <div class="col-md-6 mb-4">
                       <div class="form-outline">
-                        <input type="text" id="form3Example1" class="form-control" name="firstname" />
+                        <input type="text" id="form3Example1" class="form-control" name="firstname" value="<?= isset($firstname) ? $firstname : '' ?>" />
                         <label class="form-label" for="form3Example1">First name</label>
                       </div>
                       <p style="color:red;" class="d-flex justify-content-center"><?= isset($errors['F']) ? $errors['F'] : '' ?></p>
                     </div>
                     <div class="col-md-6 mb-4">
                       <div class="form-outline">
-                        <input type="text" id="form3Example2" class="form-control" name="lastname" />
+                        <input type="text" id="form3Example2" class="form-control" name="lastname" value="<?= isset($lastname) ? $lastname : '' ?>" />
                         <label class="form-label" for="form3Example2">Last name</label>
                       </div>
                       <p style="color:red;" class="d-flex justify-content-center"><?= isset($errors['L']) ? $errors['L'] : '' ?></p>
@@ -142,14 +138,14 @@ if (isset($_POST["register"])) {
 
                   <!-- Email input -->
                   <div class="form-outline mb-4">
-                    <input type="text" id="form3Example3" class="form-control" name="email" />
+                    <input type="text" id="form3Example3" class="form-control" name="email" value="<?= isset($email) ? $email : '' ?>" />
                     <label class="form-label" for="form3Example3">Email address</label>
                     <p style="color:red;" class="d-flex justify-content-center"><?= isset($errors['E']) ? $errors['E'] : '' ?></p>
                   </div>
 
                   <!-- adresse input -->
                   <div class="form-outline mb-4">
-                    <input type="text" id="form79Example79" class="form-control" name="adresse" />
+                    <input type="text" id="form79Example79" class="form-control" name="adresse" value="<?= isset($adresse) ? $adresse : '' ?>" />
                     <label class="form-label" for="form79Example79">Adresse</label>
                     <p style="color:red;" class="d-flex justify-content-center"><?= isset($errors['A']) ? $errors['A'] : '' ?></p>
                   </div>
@@ -170,21 +166,21 @@ if (isset($_POST["register"])) {
                   </div>
 
                   <!-- Checkbox -->
-                  <div class="form-check d-flex justify-content-center mb-4">
-                    <input class="form-check-input me-2" type="checkbox" value="" id="form2Example33" checked />
+                  <div class="form-check text-center mb-4">
+                    <input class="form-check-input me-2" type="checkbox" value="" id="form2Example33" required />
                     <label class="form-check-label" for="form2Example33">
-                      Subscribe to our newsletter
+                      Terms et conditions
                     </label>
                   </div>
 
                   <!-- Submit button -->
-                  <div class="d-flex justify-content-evenly">
-                    <button type="submit" name="register" class="btn btn-primary btn-block mb-4">
-                      Sign up
+                  <div class="d-flex">
+                    <button type="submit" name="register" style="width: 200px; margin-right:auto;" class="btn btn-primary btn-block mb-4 ">
+                      S'enregistrer
                     </button>
 
-                    <a class="btn btn-primary btn-block mb-4" style="text-decoration:none; color:white;" href="./login.php">
-                      Login
+                    <a style="text-decoration:none; color:white;" href="./login.php">
+                      <div class="btn btn-primary btn-block mb-4  " style="width: 200px;">Connection</div>
                     </a>
                   </div>
 

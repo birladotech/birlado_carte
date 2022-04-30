@@ -1,0 +1,683 @@
+/* Global property */
+*,
+::before,
+::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+/* varibale color en css */
+:root {
+  --bleuP: #3fa5f3;
+  --bleuS: #091628;
+  --gray: #eeeeee;
+  --black: #020202;
+  --whiteS: #f1f1f1;
+}
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+
+/* profile */
+.user-profile {
+  margin-right: 10px;
+}
+.user-profile img {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+}
+/* dropdown header */
+.header .dropdown {
+  display: inline-block;
+  position: relative;
+  cursor: pointer;
+}
+.header .dropdown p {
+  display: flex;
+  align-items: center;
+}
+
+.header .dropdown-content {
+  display: none;
+  position: absolute;
+  left: -60px;
+  width: 100%;
+  overflow: auto;
+  background-color: #f1f1f1f1;
+  box-shadow: 0px 10px 10px 0px rgba(0, 0, 0, 0.4);
+}
+.header .dropdown:hover .dropdown-content {
+  width: 200px;
+  display: block;
+}
+.header .dropdown-content a {
+  display: block;
+  color: #000000;
+  padding: 5px;
+  text-decoration: none;
+}
+.header .dropdown-content a:hover {
+  color: #ffffff;
+  background-color: #00a4bd;
+}
+
+/* css for message */
+.status-pending {
+  background-color: #fff0c2;
+  color: #a68b00;
+}
+
+.status-modifier {
+  background-color: #c8e6c9;
+  color: #388e3c;
+}
+
+.status-suprimmer {
+  background-color: #ffcdd2;
+  color: #c62828;
+}
+
+.sucessMessage {
+  width: 100%;
+  text-align: center;
+  padding: 20px;
+  margin: auto;
+}
+.errorMessage {
+  width: 100%;
+  text-align: center;
+  padding: 20px;
+  margin: auto;
+  margin-bottom: 10px;
+}
+.erreur {
+  color: #ff4153;
+  text-align: center;
+  font-size: 0.7em;
+  font-style: italic;
+}
+
+
+/* button */
+.btn_p {
+  font-size: 0.8em;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  display: inline-block;
+  text-align: center;
+  font-weight: bold;
+  padding: 0.7em 2em;
+  border: 3px solid var(--bleuP);
+  border-radius: 2px;
+  position: relative;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.1);
+  color: var(--bleuP);
+  text-decoration: none;
+  transition: 0.3s ease all;
+  z-index: 1;
+}
+
+.btn_p:before {
+  transition: 0.5s all ease;
+  position: absolute;
+  top: 0;
+  left: 50%;
+  right: 50%;
+  bottom: 0;
+  opacity: 0;
+  content: "";
+  background-color: var(--bleuP);
+  z-index: -1;
+}
+
+.btn_p:hover,
+.btn_p:focus {
+  color: white;
+  cursor: pointer;
+}
+
+.btn_p:hover:before,
+.btn_p:focus:before {
+  transition: 0.5s all ease;
+  left: 0;
+  right: 0;
+  opacity: 1;
+}
+
+.btn_p:active {
+  transform: scale(0.9);
+}
+/* css pour la disponibilite des voiture/location */
+.disponibilite {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 50%;
+  padding: 20px;
+  text-align: center;
+  border: 1px solid rgb(31, 208, 4);
+  box-shadow: 2px 2px 10px black;
+  color: var(--bleuS);
+  text-transform: uppercase;
+}
+/* css pour le footer */
+.footer_custom {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+}
+@media screen and (max-width: 1100px) {
+  .footer_custom {
+    position: relative;
+  }
+}
+
+/* .firstMain */
+.firstMain {
+  height: 600px;
+  border: 1px solid black;
+  background: url("../images/car1.jpg") center/cover no-repeat;
+}
+.bg_black {
+  background-color: rgba(0, 0, 0, 0.482);
+  height: 100%;
+}
+
+
+.bgc {
+  background-color: var(--bleuS);
+}
+
+.logoBerno {
+  padding: 10px;
+}
+
+.logoBerno img {
+  width: 100px;
+  height: 70px;
+}
+
+
+.user_connect {
+  display: flex;
+  align-items: center;
+  font-weight: bold;
+}
+
+.user_connect span {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background-color: #388e3c;
+}
+
+/* banner */
+.f_text_image {
+  position: absolute;
+  top: 40%;
+  left: 5%;
+  color: white;
+}
+.f_text_image h3 {
+  text-transform: uppercase;
+  font-size: 2em;
+  width: 60%;
+  margin-bottom: 20px;
+}
+.p_border {
+  font-size: 1.4em;
+  border-left: 10px double var(--bleuP);
+  padding: 5px;
+}
+.f_card {
+  display: flex;
+  align-items: center;
+}
+.f_card_item {
+  width: 200px;
+  margin: 20px;
+  height: 90px;
+  background-position: bottom;
+  border-radius: 10px;
+  margin-top: 60px;
+}
+
+.f_card_item .f_img_item {
+  width: 170px;
+  height: 70px;
+  margin-top: -10px;
+}
+
+.f_card_item:nth-child(1) {
+  background-color: var(--bleuP);
+  color: black;
+}
+.f_card_item:nth-child(2) {
+  background-color: white;
+  color: #091628;
+}
+
+.f_card_item p {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: -10px;
+}
+
+.f_card_item p img {
+  width: 60px;
+  height: 30px;
+  margin-left: 10px;
+}
+.link-car:hover {
+  color: none;
+}
+/* baseline */
+.baseline {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.baseline div {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 220px;
+  height: 170px;
+  box-shadow: 5px 5px 10px #797979, -5px -5px 10px #ffffff;
+  margin: 40px auto;
+  border-radius: 25% 10%;
+  text-align: center;
+}
+
+.baseline img {
+  width: 180px;
+  height: 120px;
+  margin: auto;
+}
+
+.baseline p {
+  padding: 10px;
+}
+/* company */
+/* section company */
+.birlado_company {
+  display: flex;
+  justify-content: space-evenly;
+  position: relative;
+}
+.img_birlado {
+  max-width: 35%;
+  min-width: 200px;
+  height: 22%;
+  margin-bottom: 20px;
+  background-color: var(--bleuP);
+  margin: 20px;
+  box-shadow: 5px 5px 20px #282b4a;
+}
+
+.img_birlado img {
+  width: 100%;
+  padding: 0 0 8px 10px;
+}
+/* animation img birlado */
+.img_birlado:hover {
+  transform: scale(1.04);
+  cursor: pointer;
+}
+.text_company {
+  width: 50%;
+  padding: 10px;
+}
+
+.text_company h2 {
+  text-transform: uppercase;
+  color: var(--bleuS);
+}
+
+.text_company h2 span {
+  color: var(--bleuP);
+}
+
+.text_company .btn_global {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 20px;
+}
+
+/* trust enterprise */
+.birlado_trust_company {
+  background-color: #f1f1f1;
+  padding: 20px;
+  margin: 40px 20px;
+}
+
+.text_trust h2 {
+  color: var(--bleuS);
+  font-size: 2.5em;
+}
+.text_trust h2 span {
+  color: var(--bleuP);
+}
+.text_trust {
+  margin: 0 25px;
+  text-align: justify;
+  line-height: 40px;
+}
+
+.same_div_icon,
+.birlado_trust_company {
+  display: flex;
+  align-items: center;
+}
+.same_icon_enteprise img {
+  width: 7vw;
+  height: 7vw;
+  margin: 20px;
+}
+/* search */
+.search_car {
+  margin-top: 10px;
+  width: 80%;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  height: 100%;
+}
+.search_car h1 {
+  text-transform: uppercase;
+  margin: 10px;
+}
+.search_bar form {
+  display: flex;
+  justify-content: space-between;
+  box-shadow: 2px 3px 10px black;
+  padding: 20px;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.search_bar input {
+  width: 50%;
+  padding: 12px;
+  background-color: var(--black);
+  outline: 0;
+  border: 0;
+  color: white;
+}
+
+/* card item */
+.grid-car {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, 250px);
+  gap: 20px;
+  justify-content: center;
+}
+.car_card_item {
+  width: 240px;
+  border-radius: 20px;
+  border-radius: 12px;
+  background: linear-gradient(145deg, #cacaca, #f0f0f0);
+  box-shadow: 7px 7px 23px #b5b5b5, -7px -7px 23px #ffffff;
+  margin-bottom: 10px;
+}
+.car_card_item:hover {
+  transform: scale(1.01);
+}
+.img_car img {
+  width: 240px;
+  height: 150px;
+  object-fit: cover;
+}
+
+.t_p_card {
+  padding: 5px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-weight: bold;
+}
+
+.description_car {
+  margin: 10px;
+  display: flex;
+  justify-content: space-around;
+  color: var(--bleuP);
+  font-weight: 900;
+}
+.text_car {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  font-weight: 900;
+}
+.text_car select {
+  width: 140px;
+  margin: 5px auto;
+}
+
+.car_card_item button {
+  width: 100%;
+  border: 0;
+  padding: 5px;
+  background-color: var(--bleuP);
+  color: white;
+  text-transform: uppercase;
+  margin-top: 10px;
+  padding: 10px;
+  cursor: pointer;
+}
+/* chef */
+.our_chef {
+  text-align: center;
+}
+.our_team_div {
+  display: flex;
+  justify-content: space-evenly;
+  padding: 10px;
+}
+
+.img_team img {
+  border-radius: 50%;
+  width: 200px;
+  height: 200px;
+}
+
+.text_team {
+  font-size: 0.8em;
+  color: var(--bleuP);
+  margin-bottom: 20px;
+}
+.icon_team img {
+  width: 20px;
+  height: 20px;
+}
+.icon_team {
+  display: flex;
+  align-items: center;
+}
+.icon_team p {
+  padding: 10px;
+  border-radius: 50%;
+  margin-left: 10px;
+  border: 1px solid var(--bleuP);
+  transition: all 0.5s;
+}
+
+.icon_team p:hover {
+  background-color: var(--bleuS);
+  box-shadow: 1px 1px 15px black;
+  transition: all 0.5s;
+}
+/* footer */
+footer {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  background-color: var(--bleuS);
+  color: white;
+  font-size: 1.2em;
+  padding: 20px;
+}
+
+footer ul {
+  list-style: none;
+}
+
+footer ul li {
+  margin-bottom: 10px;
+}
+
+.icon_footer {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+}
+.icon_footer img {
+  width: 25px;
+  height: 25px;
+}
+
+.icon_footer img:hover {
+  opacity: 0.8;
+}
+
+.disponibilite a {
+  font-size: 0.5em;
+  text-transform: initial;
+  margin-left: 10px;
+}
+
+.disponibilite a:hover {
+  color: var(--bleuP);
+}
+
+/* responsive accueil */
+@media screen and (max-width: 1040px) {
+  .f_card_item {
+    display: none;
+  }
+  .f_text_image {
+    margin: 0;
+    padding: 0;
+  }
+  .f_text_image h3 {
+    width: 100%;
+    text-align: center;
+    margin-bottom: 10px;
+  }
+  .p_border {
+    display: flex;
+    justify-content: center;
+    border-left: 0;
+    border-bottom: 10px double var(--bleuP);
+    text-align: center;
+    margin: 10px;
+  }
+  .baseline {
+    flex-direction: column;
+    margin-top: 20px;
+  }
+  .birlado_company {
+    width: 100%;
+    flex-direction: column;
+  }
+
+  .img_birlado {
+    max-width: 100%;
+    min-height: 300px;
+  }
+  .img_birlado img {
+    margin: 0 auto;
+  }
+  .text_company {
+    width: 100%;
+  }
+  .text_company h2 {
+    text-align: center;
+  }
+  .birlado_trust_company {
+    flex-direction: column;
+    font-size: medium;
+  }
+  .text_trust {
+    text-align: left;
+  }
+}
+/* reponsive header */
+.li-media,
+.menu-media,
+.media-connec {
+  display: none;
+}
+@media screen and (max-width: 1130px) {
+  header {
+    font-size: small;
+  }
+}
+@media screen and (max-width: 1010px) {
+  header nav ul {
+    display: none;
+    position: absolute;
+    right: 2px;
+    flex-direction: column;
+    background-color: var(--whiteS);
+    color: var(--black);
+    padding: 10px;
+    margin-top: 45px;
+    box-shadow: 1px 2px 4px black;
+  }
+  .login_a {
+    display: none;
+  }
+  .media-connect {
+    display: block;
+  }
+  .menu-media {
+    cursor: pointer;
+    display: flex;
+    width: 25px;
+    height: 25px;
+  }
+  header nav ul li {
+    margin-bottom: 20px;
+    transition: margin-bottom 0.5s 0.3s;
+  }
+  .show {
+    display: block;
+  }
+  .li-media {
+    display: block;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  footer {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .footer_div {
+    width: 100%;
+  }
+  footer li {
+    border-bottom: 1px dotted grey;
+    margin-bottom: 5px;
+  }
+  .copyrightF p {
+    margin-top: 10px;
+  }
+}

@@ -1,0 +1,93 @@
+main {
+    margin-top: 100px;
+  }
+  
+  .banner_apropos {
+    padding-top: 160px;
+    text-align: center;
+    background-color: var(--bleuS);
+    height: 400px;
+    margin: auto 0;
+  }
+  .banner_apropos > * {
+    padding-left: 20px;
+    color: white;
+  }
+  
+  .banner_apropos h1 {
+    font-size: 3rem;
+  }
+  
+  .title_histoire {
+    text-transform: uppercase;
+    text-align: center;
+    margin-top: 15px;
+    margin-bottom: 20px;
+  }
+  
+  .text_history {
+    padding: 3rem;
+    font-size: 1.4em;
+    background-color: #dcf7fa;
+    text-align: center;
+  }
+  
+  .row_blue_line,
+  .row_red_line {
+    width: 200px;
+    margin: 7px auto;
+    text-align: left;
+  }
+  
+  .row_blue_line {
+    border-bottom: 5px solid var(--bleuS);
+  }
+  
+  .row_red_line {
+    border-bottom: 5px solid var(--bleuP);
+  }
+  
+  .faq_website {
+    max-width: 1500px;
+    width: 80%;
+    margin: 10px auto;
+    text-align: center;
+    background-color: #f1f1f1;
+    padding: 1rem;
+  }
+  
+  .faq_website h1 {
+    font-size: 1.7em;
+    color: #282b4a;
+  }
+  
+  .faq_website p {
+    width: 60vw;
+    margin: auto;
+    margin-bottom: 15px;
+    font-size: 1.3em;
+  }
+  
+  @media screen and (max-width: 1200px) {
+    main {
+      overflow-x: hidden;
+    }
+  
+    .banner_apropos h1,p{
+      font-size: medium;
+      padding: 0;
+      margin: 0;
+    }
+    .faq_website,
+    .banner_apropos,
+    .text_history {
+      font-size: small;
+    }
+    .faq_website p {
+      font-size: small;
+      width: 100%;
+      margin: auto;
+      margin-bottom: 10px;
+    }
+  }
+  
