@@ -1,6 +1,23 @@
 <?php
 session_start();
 
+require_once "../DB/DB.php";
+require_once "../Models/Adresse.php";
+$a = new Adresse(loadDB());
+if (!isset($_SESSION['user'])) {
+    header("Location: ../../index.php ");
+}
+if (isset($_POST['search'])) {
+    $adresse = strip_tags($_POST['adresse']);
+    $adresseParse = str_replace(" ", "+", $adresse);
+    $countAdresse = $a->searchAdresseByAdresse($adresse);
+
+    if ($countAdresse->rowCount() > 0) {
+        $reload = true;
+    } else {
+        $errors = "Adresse Introuvable dans la basse de donnée";
+    }
+}
 ?>
 
 <!DOCTYPE html>
@@ -11,27 +28,29 @@ session_start();
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../../assets/bootstrap/dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="../../style/main.css">
+    <link rel="stylesheet" href="../../style/search.css">
     <title>Rechercher</title>
+    </script>
+
 </head>
 
 <body>
     <?php require "../../includes/header.php"; ?>
-    <div class="title-container">
-        <h1 class="title">It's all about context.</h1>
-        <h1 class="title-down">Ajax'ing something...</h1>
-    </div>
 
-    <fieldset class="field-container">
-        <input type="text" placeholder="Search..." class="field" />
-        <div class="icons-container">
-            <div class="icon-search"></div>
-            <div class="icon-close">
-                <div class="x-up"></div>
-                <div class="x-down"></div>
-            </div>
-        </div>
-    </fieldset>
+    <div class="container-search">
+        <form action="" class="search" method="post">
+            <input type="search" placeholder="Rechercher une adresse..." name="adresse">
+            <button type="submit" name="search">
+                <img src="../../assets/icons/search.png" alt="">
+            </button>
+        </form>
+        <p class="text-center text-danger"><?= isset($errors) ? $errors : '' ?></p>
+        <?php if (isset($reload)) : ?>
+            <iframe width="100%" style="margin-top: 30px;" height="450" style="border:0" loading="lazy" allowfullscreen referrerpolicy="no-referrer-when-downgrade" src="https://www.google.com/maps/embed/v1/place?key=AIzaSyDMXoJyL6TlggHntTEO-hG3SjXoozQwTmQ
+    &q=<?= $adresse ?>">
+            </iframe>
+        <?php endif; ?>
+    </div>
 </body>
 
 </html>

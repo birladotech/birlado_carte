@@ -1,5 +1,5 @@
 <?php
-$baseUrl = "http://" . $_SERVER['HTTP_HOST'] . "/rithler_news/";
+$baseUrl = "http://" . $_SERVER['HTTP_HOST'] . "/birlado_carte/";
 
 if (isset($_POST["logout"])) {
     session_start();

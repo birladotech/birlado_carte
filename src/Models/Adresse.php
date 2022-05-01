@@ -41,4 +41,17 @@ class Adresse
         $adressQuery->execute();
         return $adressQuery;
     }
+    public function getAdresseById($id)
+    {
+        $adressQuery = $this->bdd->prepare("SELECT * FROM tb_adresse WHERE id=? ORDER BY id DESC");
+        $adressQuery->execute([$id]);
+        return $adressQuery;
+    }
+    public function searchAdresseByAdresse($adresse)
+    {
+        $adresse = addcslashes($adresse, '%_');
+        $adressQuery = $this->bdd->prepare("SELECT * FROM tb_adresse WHERE adresse LIKE ? OR  ville LIKE ? OR pays LIKE ? OR code_postal LIKE ?");
+        $adressQuery->execute(["$adresse%", "$adresse%", "$adresse%", "$adresse%"]);
+        return $adressQuery;
+    }
 }

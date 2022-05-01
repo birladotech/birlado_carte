@@ -37,19 +37,54 @@ if (isset($_POST['addAdresse'])) {
     }
 
     if (!isset($errors)) {
-        $adresseData = [
-            "adresse" => $adresse,
-            "codePostal" => $codePostal,
-            "pays" => $pays,
-            "ville" => $ville,
-        ];
-        if ($a->addAdress($adresseData)) {
-            $sucess = 'adresse add sucessfulyy';
-            $reload = true;
-            header("Location: ./dashboard.php");
+        if ($_POST['addAdresse'] == "modif") {
+            $adresseData = [
+                "adresse" => $adresse,
+                "codePostal" => $codePostal,
+                "pays" => $pays,
+                "ville" => $ville,
+                "id" => intval($_POST['id'])
+            ];
+            echo 'modif';
+            if ($a->updateAdresse($adresseData)) {
+                $sucess = 'Adresse update sucessfuly';
+                $reload = true;
+                header("Location: ./dashboard.php?sucess=$sucess");
+            }
+        } else {
+            $adresseData = [
+                "adresse" => $adresse,
+                "codePostal" => $codePostal,
+                "pays" => $pays,
+                "ville" => $ville,
+            ];
+            if ($a->addAdress($adresseData)) {
+                $sucess = 'Adresse add sucessfuly';
+                $reload = true;
+                header("Location: ./dashboard.php?sucess=$sucess");
+            }
         }
     } else {
         $reload = false;
+    }
+}
+if (isset($_POST['edit'])) {
+    $id = strip_tags(trim(intval($_POST['id'])));
+    $adresseId = $a->getAdresseById(intval(strip_tags($id)));
+    $data = $adresseId->fetchObject();
+    $_POST['adresse'] = $data->adresse;
+    $_POST['ville'] = $data->ville;
+    $_POST['pays'] = $data->pays;
+    $_POST['codePostal'] = $data->code_postal;
+    $reload = false;
+    $modif = true;
+}
+if (isset($_POST['delete'])) {
+    $id = strip_tags(trim(intval($_POST['id'])));
+    if ($a->removeAdresse($id)) {
+        $sucess = 'Adresse remove sucessfuly';
+        $reload = true;
+        header("Location: ./dashboard.php?sucess=$sucess");
     }
 }
 ?>
@@ -70,8 +105,8 @@ if (isset($_POST['addAdresse'])) {
 <body>
     <?php include "../../includes/header.php";
     ?>
-    <?php if (isset($sucess)) : ?>
-        <div class=" w-50 p-3 mx-auto mt-3 mb-2 bg-success text-white text-center"><?= $sucess ?></div>
+    <?php if (isset($_GET["sucess"])) : ?>
+        <div class=" w-50 p-3 mx-auto mt-3 mb-2 bg-success text-white text-center"><?= $_GET['sucess'] ?></div>
     <?php endif; ?>
     <form action="" method="POST" class="w-50 mx-auto mt-8">
         <div class="form-group mt-5">
@@ -350,7 +385,7 @@ if (isset($_POST['addAdresse'])) {
                 </select>
                 <p class="text-danger"><?= isset($errors['P']) && !$reload ? $errors['P'] : '' ?></p>
             </div>
-
+            <input type="hidden" name="id" value="<?= isset($_POST['id']) ? $_POST['id'] : '' ?>">
             <div class="form-group col-md-2">
                 <label for="inputZip">Code Postal</label>
                 <input type="text" class="form-control" id="inputZip" name="codePostal" value="<?= isset($_POST['codePostal']) ? $_POST['codePostal']  : '' ?>">
@@ -358,7 +393,7 @@ if (isset($_POST['addAdresse'])) {
             </div>
 
         </div>
-        <button type="submit" name="addAdresse" class="btn btn-primary">Ajouter</button>
+        <button type="submit" value="<?= isset($modif) ? 'modif' : 'add' ?>" name="addAdresse" class="btn btn-primary"><?= isset($modif) ? 'Modifier' : 'Ajouter' ?></button>
     </form>
     <?php if (($a->getAllAdresse())->rowCount() > 0) : ?>
         <div id="demo" class="position-sticky" style="height: 300px; overflow-y: scroll;">
@@ -385,7 +420,22 @@ if (isset($_POST['addAdresse'])) {
                                     <?= $data->pays ?>
                                 </td>
                                 <td data-title="Code Postal"><?= $data->code_postal ?></td>
-                                <td data-title="Status"><span class="glyphicon glyphicon-search" aria-hidden="true"></span> Modif</td>
+                                <td data-title="Status">
+                                    <form action="" method="POST" class="d-flex aligns-items-center form-action">
+                                        <button type="submit" name="edit">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" class="svg-edit">
+                                                <path d="m18.988 2.012 3 3L19.701 7.3l-3-3zM8 16h3l7.287-7.287-3-3L8 13z"></path>
+                                                <path d="M19 19H8.158c-.026 0-.053.01-.079.01-.033 0-.066-.009-.1-.01H5V5h6.847l2-2H5c-1.103 0-2 .896-2 2v14c0 1.104.897 2 2 2h14a2 2 0 0 0 2-2v-8.668l-2 2V19z"></path>
+                                            </svg>
+                                        </button>
+                                        <input type="hidden" name="id" value="<?= $data->id ?>">
+                                        <button type="submit" name="delete">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" class="svg-delete">
+                                                <path d="M6 7H5v13a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V7H6zm10.618-3L15 2H9L7.382 4H3v2h18V4z"></path>
+                                            </svg>
+                                        </button>
+                                    </form>
+                                </td>
                             </tr>
                         <?php endwhile; ?>
 
