@@ -45,7 +45,6 @@ if (isset($_POST['addAdresse'])) {
                 "ville" => $ville,
                 "id" => intval($_POST['id'])
             ];
-            echo 'modif';
             if ($a->updateAdresse($adresseData)) {
                 $sucess = 'Adresse update sucessfuly';
                 $reload = true;

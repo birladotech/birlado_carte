@@ -50,8 +50,8 @@ class Adresse
     public function searchAdresseByAdresse($adresse)
     {
         $adresse = addcslashes($adresse, '%_');
-        $adressQuery = $this->bdd->prepare("SELECT * FROM tb_adresse WHERE adresse LIKE ? OR  ville LIKE ? OR pays LIKE ? OR code_postal LIKE ?");
-        $adressQuery->execute(["$adresse%", "$adresse%", "$adresse%", "$adresse%"]);
+        $adressQuery = $this->bdd->prepare("SELECT * FROM tb_adresse WHERE adresse=? OR  ville=? OR pays=? OR code_postal=?");
+        $adressQuery->execute([$adresse, $adresse, $adresse, $adresse]);
         return $adressQuery;
     }
 }
